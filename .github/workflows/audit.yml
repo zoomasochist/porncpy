@@ -10,17 +10,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
 
-    - name: Setup Go
-      uses: actions/setup-go@v3
+    - uses: actions/setup-go@v3
       with:
         go-version: ${{ matrix.go-version }}
   
-    - name: Build
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
       run: go build -v
 
-    - name: Release
-      uses: softprops/action-gh-release@v1
+    - uses: softprops/action-gh-release@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         files: |
