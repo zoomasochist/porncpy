@@ -1,28 +1,16 @@
+on: [push, pull_request]
 name: Audit
-
-on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
 
 jobs:
   audit:
-    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        go-version: [1.19.x]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
-      
-      - name: Set up Go
-      - uses: actions/setup-go@v3
-        with:
-          go-version: '^1.16'
-
-      
-      - name: Build for Linux
-        run: go build -v
-      
-      - name: Build for Windows
-        run: go build -v
-        env:
-          GOOS: windows
-          GOARCH: amd64
+    - uses: actions/setup-go@v3
+      with:
+        go-version: ${{ matrix.go-version }}
+    - uses: actions/checkout@v3
+    - run: go build -v
