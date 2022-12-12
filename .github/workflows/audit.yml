@@ -1,0 +1,27 @@
+name: Audit
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  audit:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.18
+      
+      - name: Build for Linux
+        uses: go build -v
+      
+      - name: Build for Windows
+        uses: go build -v
+        env:
+          GOOS: windows
+          GOARCH: amd64
