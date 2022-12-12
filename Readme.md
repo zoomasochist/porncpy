@@ -2,6 +2,10 @@
 
 Infest your computer with porn :)
 
+## Download
+
+Artifacts are produced for every build [here](https://github.com/zoomasochist/porncpy/releases)
+
 ## Usage
 
 Run from a terminal. On first run it will create a cache
