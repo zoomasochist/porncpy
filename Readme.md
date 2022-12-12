@@ -4,7 +4,7 @@ Infest your computer with porn :)
 
 ## Download
 
-Artifacts are produced for every build [here](https://github.com/zoomasochist/porncpy/releases)
+Artifacts are produced for every tag [here](https://github.com/zoomasochist/porncpy/releases)
 
 ## Usage
 
