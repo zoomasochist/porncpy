@@ -1,16 +1,27 @@
 on: [push, pull_request]
-name: Audit
+name: Build
 
 jobs:
-  audit:
+  build:
     strategy:
       matrix:
         go-version: [1.19.x]
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
+
+    - name: Setup Go
     - uses: actions/setup-go@v3
       with:
         go-version: ${{ matrix.go-version }}
+  
+    - name: Build
     - uses: actions/checkout@v3
     - run: go build -v
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        files: |
+          porncpy*
